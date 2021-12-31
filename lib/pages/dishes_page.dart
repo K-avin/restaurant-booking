@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:book_tablez/pages/login_page.dart';
 import 'package:book_tablez/pages/profile_page.dart';
 import 'package:book_tablez/pages/widgets/header_widget.dart';
+import 'package:number_inc_dec/number_inc_dec.dart';
 
 class DishesPage extends StatefulWidget {
   @override
@@ -303,15 +304,38 @@ class _DishesPageState extends State<DishesPage> {
                             child: Container(
                               alignment: Alignment.center,
                               width: 900,
-                              height: 72,
-                              // padding: EdgeInsets.all(15),
+                              height: 90,
+                              padding: const EdgeInsets.only(top: 15),
                               child: Column(
                                 children: <Widget>[
                                   ListTile(
-                                    leading: Icon(Icons.restaurant_menu),
-                                    title: Text("Chicken biriyani"),
-                                    subtitle: Text("Rs.360.00"),
-                                  ),
+                                      title: Text("Briyani"),
+                                      subtitle: Text("Rs.135.00"),
+                                      leading: CircleAvatar(
+                                          backgroundImage: AssetImage(
+                                              "assets/images/category.png")),
+                                      trailing: Container(
+                                        height: 30,
+                                        width: 90,
+                                        // margin: const EdgeInsets.only(bottom: 15),
+                                        child:
+                                            NumberInputPrefabbed.roundedButtons(
+                                          controller: TextEditingController(),
+                                          numberFieldDecoration:
+                                              InputDecoration(
+                                            border: InputBorder.none,
+                                          ),
+                                          incDecBgColor: Colors.transparent,
+                                          incIconSize: 18,
+                                          incIcon: Icons.add,
+                                          decIcon: Icons.remove,
+                                          decIconSize: 18,
+                                          decIconColor: Colors.black87,
+                                          incIconColor: Colors.black87,
+                                          buttonArrangement:
+                                              ButtonArrangement.incRightDecLeft,
+                                        ),
+                                      ))
                                 ],
                               ),
                             ),
