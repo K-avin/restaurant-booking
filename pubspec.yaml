@@ -53,6 +53,7 @@ flutter:
     - assets/images/resurant.png
     - assets/images/user-2.png
     - assets/images/category.png
+    - assets/images/product.png
 
 
   # To add assets to your application, add an assets section, like this:

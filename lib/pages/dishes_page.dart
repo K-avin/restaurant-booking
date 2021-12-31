@@ -313,7 +313,7 @@ class _DishesPageState extends State<DishesPage> {
                                       subtitle: Text("Rs.135.00"),
                                       leading: CircleAvatar(
                                           backgroundImage: AssetImage(
-                                              "assets/images/category.png")),
+                                              "assets/images/product.png")),
                                       trailing: Container(
                                         height: 30,
                                         width: 90,
