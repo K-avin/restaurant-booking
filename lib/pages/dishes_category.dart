@@ -256,6 +256,120 @@ class _DishesCategoryPageState extends State<DishesCategoryPage> {
                                     ),
                                   ],
                                 ),
+                                Column(
+                                  children: [
+                                    Container(
+                                      child: Card(
+                                        elevation: 0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: InkWell(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              image: DecorationImage(
+                                                image: AssetImage(
+                                                    "assets/images/category.png"),
+                                                // fit: BoxFit.fitWidth,
+                                                alignment: Alignment.topCenter,
+                                              ),
+                                            ),
+                                            alignment: Alignment.center,
+                                            width: 120,
+                                            height: 120,
+                                            padding: const EdgeInsets.only(
+                                                top: 4, right: 6, left: 6),
+                                            child: Column(
+                                              children: <Widget>[
+                                                Container(
+                                                  margin: const EdgeInsets.only(
+                                                      top: 83),
+                                                  child: Text(
+                                                    'Biriyani',
+                                                    style: TextStyle(
+                                                      color: Colors.black54,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 16,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        DishesPage()));
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Container(
+                                      child: Card(
+                                        elevation: 0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: InkWell(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              image: DecorationImage(
+                                                image: AssetImage(
+                                                    "assets/images/category.png"),
+                                                // fit: BoxFit.fitWidth,
+                                                alignment: Alignment.topCenter,
+                                              ),
+                                            ),
+                                            alignment: Alignment.center,
+                                            width: 120,
+                                            height: 120,
+                                            padding: const EdgeInsets.only(
+                                                top: 4, right: 6, left: 6),
+                                            child: Column(
+                                              children: <Widget>[
+                                                Container(
+                                                  margin: const EdgeInsets.only(
+                                                      top: 83),
+                                                  child: Text(
+                                                    'Biriyani',
+                                                    style: TextStyle(
+                                                      color: Colors.black54,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 16,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        DishesPage()));
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                           ),

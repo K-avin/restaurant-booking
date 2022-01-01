@@ -247,6 +247,49 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                           ),
                         ),
                         Container(
+                          child: Container(
+                            padding: const EdgeInsets.only(
+                                top: 25, left: 8, bottom: 4.0),
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "Products",
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18,
+                              ),
+                              textAlign: TextAlign.left,
+                            ),
+                          ),
+                        ),
+                        //
+                        //
+                        Container(
+                          child: Card(
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: 900,
+                              height: 90,
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Column(
+                                children: <Widget>[
+                                  ListTile(
+                                    title: Text("Briyani"),
+                                    subtitle: Text("Rs.135.00"),
+                                    leading: CircleAvatar(
+                                        backgroundImage: AssetImage(
+                                            "assets/images/product.png")),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
                           padding: const EdgeInsets.only(top: 10),
                           child: Container(
                             decoration: ThemeHelper()
