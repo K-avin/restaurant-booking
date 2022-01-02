@@ -1,3 +1,5 @@
+import 'package:book_tablez/API/getOrders.dart';
+import 'package:book_tablez/Model/ordersModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,7 +7,9 @@ import 'package:book_tablez/common/theme_helper.dart';
 import 'package:book_tablez/pages/profile_page.dart';
 import 'package:book_tablez/pages/restaurant.dart';
 import 'package:book_tablez/pages/widgets/header_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'my_orders.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,6 +21,23 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double _drawerIconSize = 24;
   double _drawerFontSize = 17;
+  Future<Orders>? _future;
+
+  getIntValuesSF() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return int
+    int? intValue = prefs.getInt('user_id');
+    print(intValue);
+    return intValue;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getIntValuesSF();
+
+    _future = getOrders();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -419,401 +440,88 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         //
-                        Container(
-                          child: Card(
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: 900,
-                              height: 60,
-                              // padding: EdgeInsets.all(15),
-                              child: Column(
-                                children: <Widget>[
-                                  Column(children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(top: 18),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Icon(
-                                            Icons.shopping_bag_outlined,
-                                            color: Colors.black54,
-                                          ),
-                                          Text(
-                                            "#0034",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
+
+                        FutureBuilder<Orders>(
+                          future: _future,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Container(
+                                child: Card(
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    width: 900,
+                                    height: 60,
+                                    // padding: EdgeInsets.all(15),
+                                    child: Column(
+                                      children: <Widget>[
+                                        Column(children: [
+                                          Container(
+                                            padding:
+                                                const EdgeInsets.only(top: 18),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Icon(
+                                                  Icons.shopping_bag_outlined,
+                                                  color: Colors.black54,
+                                                ),
+                                                Text(
+                                                  snapshot.data!.id.toString(),
+                                                  style: TextStyle(
+                                                    color: Colors.black54,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16,
+                                                  ),
+                                                  textAlign: TextAlign.left,
+                                                ),
+                                                Text(
+                                                  snapshot.data!.table_id
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    color: Colors.black54,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16,
+                                                  ),
+                                                  textAlign: TextAlign.right,
+                                                ),
+                                                Text(
+                                                  DateFormat("yyyy-MM-dd")
+                                                      .format(DateTime.parse(
+                                                          snapshot.data!.date)),
+                                                  style: TextStyle(
+                                                    color: Colors.black54,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16,
+                                                  ),
+                                                  textAlign: TextAlign.left,
+                                                ),
+                                                Icon(
+                                                  Icons.arrow_right_outlined,
+                                                  color: Colors.grey,
+                                                  size: 30,
+                                                ),
+                                              ],
                                             ),
-                                            textAlign: TextAlign.left,
                                           ),
-                                          Text(
-                                            "Rs.1350.00",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.right,
-                                          ),
-                                          Text(
-                                            "2021/12/31",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Icon(
-                                            Icons.arrow_right_outlined,
-                                            color: Colors.grey,
-                                            size: 30,
-                                          ),
-                                        ],
-                                      ),
+                                        ])
+                                      ],
                                     ),
-                                  ])
-                                ],
-                              ),
-                            ),
-                          ),
+                                  ),
+                                ),
+                              );
+                            } else if (snapshot.hasError) {
+                              return Text('${snapshot.error}');
+                            } else {
+                              return const Text('Please Enter a value');
+                            }
+                          },
                         ),
                         //
-                        Container(
-                          child: Card(
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: 900,
-                              height: 60,
-                              // padding: EdgeInsets.all(15),
-                              child: Column(
-                                children: <Widget>[
-                                  Column(children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(top: 18),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Icon(
-                                            Icons.shopping_bag_outlined,
-                                            color: Colors.black54,
-                                          ),
-                                          Text(
-                                            "#0034",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Text(
-                                            "Rs.1350.00",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.right,
-                                          ),
-                                          Text(
-                                            "2021/12/31",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Icon(
-                                            Icons.arrow_right_outlined,
-                                            color: Colors.grey,
-                                            size: 30,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ])
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        //
-                        Container(
-                          child: Card(
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: 900,
-                              height: 60,
-                              // padding: EdgeInsets.all(15),
-                              child: Column(
-                                children: <Widget>[
-                                  Column(children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(top: 18),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Icon(
-                                            Icons.shopping_bag_outlined,
-                                            color: Colors.black54,
-                                          ),
-                                          Text(
-                                            "#0034",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Text(
-                                            "Rs.1350.00",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.right,
-                                          ),
-                                          Text(
-                                            "2021/12/31",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Icon(
-                                            Icons.arrow_right_outlined,
-                                            color: Colors.grey,
-                                            size: 30,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ])
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        //
-                        Container(
-                          child: Card(
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: 900,
-                              height: 60,
-                              // padding: EdgeInsets.all(15),
-                              child: Column(
-                                children: <Widget>[
-                                  Column(children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(top: 18),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Icon(
-                                            Icons.shopping_bag_outlined,
-                                            color: Colors.black54,
-                                          ),
-                                          Text(
-                                            "#0034",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Text(
-                                            "Rs.1350.00",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.right,
-                                          ),
-                                          Text(
-                                            "2021/12/31",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Icon(
-                                            Icons.arrow_right_outlined,
-                                            color: Colors.grey,
-                                            size: 30,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ])
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        //
-                        Container(
-                          child: Card(
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: 900,
-                              height: 60,
-                              // padding: EdgeInsets.all(15),
-                              child: Column(
-                                children: <Widget>[
-                                  Column(children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(top: 18),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Icon(
-                                            Icons.shopping_bag_outlined,
-                                            color: Colors.black54,
-                                          ),
-                                          Text(
-                                            "#0034",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Text(
-                                            "Rs.1350.00",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.right,
-                                          ),
-                                          Text(
-                                            "2021/12/31",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Icon(
-                                            Icons.arrow_right_outlined,
-                                            color: Colors.grey,
-                                            size: 30,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ])
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        //
-                        Container(
-                          child: Card(
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: 900,
-                              height: 60,
-                              // padding: EdgeInsets.all(15),
-                              child: Column(
-                                children: <Widget>[
-                                  Column(children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(top: 18),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Icon(
-                                            Icons.shopping_bag_outlined,
-                                            color: Colors.black54,
-                                          ),
-                                          Text(
-                                            "#0034",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Text(
-                                            "Rs.1350.00",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.right,
-                                          ),
-                                          Text(
-                                            "2021/12/31",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 16,
-                                            ),
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Icon(
-                                            Icons.arrow_right_outlined,
-                                            color: Colors.grey,
-                                            size: 30,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ])
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   )

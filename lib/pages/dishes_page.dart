@@ -1,3 +1,5 @@
+import 'package:book_tablez/API/postOrders.dart';
+import 'package:book_tablez/Model/ordersModel.dart';
 import 'package:book_tablez/pages/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,12 @@ import 'package:book_tablez/pages/widgets/header_widget.dart';
 import 'package:number_inc_dec/number_inc_dec.dart';
 
 class DishesPage extends StatefulWidget {
+  int restarantId;
+  int tableId;
+  int categoryId;
+
+  DishesPage(this.restarantId, this.tableId, this.categoryId);
+
   @override
   State<StatefulWidget> createState() {
     return _DishesPageState();
@@ -17,6 +25,9 @@ class DishesPage extends StatefulWidget {
 class _DishesPageState extends State<DishesPage> {
   double _drawerIconSize = 24;
   double _drawerFontSize = 17;
+  int _total = 300;
+
+  Future<Orders>? _future;
 
   @override
   Widget build(BuildContext context) {
@@ -441,6 +452,11 @@ class _DishesPageState extends State<DishesPage> {
                   ),
                 ),
                 onTap: () {
+                  setState(() {
+                    _future = placeOrder(widget.restarantId, widget.tableId,
+                        widget.categoryId, _total, context);
+                  });
+
                   showDialog(
                       context: context,
                       builder: (context) {

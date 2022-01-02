@@ -1,3 +1,5 @@
+import 'package:book_tablez/API/getRestaurants.dart';
+import 'package:book_tablez/Model/restaurantModel.dart';
 import 'package:book_tablez/pages/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,14 @@ class RestaurantPage extends StatefulWidget {
 class _RestaurantPageState extends State<RestaurantPage> {
   double _drawerIconSize = 24;
   double _drawerFontSize = 17;
+  late Future<List<Restaurants>> restaurantList;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    restaurantList = getRestaurant();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -225,7 +235,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Stack(
+        child: Column(
           children: [
             Container(
               height: 100,
@@ -325,11 +335,11 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                             ),
                                           ),
                                           onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        TablePage()));
+                                            // Navigator.push(
+                                            //     context,
+                                            //     MaterialPageRoute(
+                                            //         builder: (context) =>
+                                            //             TablePage()));
                                           },
                                         ),
                                       ),
@@ -399,11 +409,11 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                             ),
                                           ),
                                           onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        TablePage()));
+                                            // Navigator.push(
+                                            //     context,
+                                            //     MaterialPageRoute(
+                                            //         builder: (context) =>
+                                            //             TablePage()));
                                           },
                                         ),
                                       ),
@@ -420,7 +430,103 @@ class _RestaurantPageState extends State<RestaurantPage> {
                   )
                 ],
               ),
-            )
+            ),
+
+//........................................................................................................
+//.........................................................................................................
+//........................................................................................................
+//.........................................................................................................
+//........................................................................................................
+//.........................................................................................................
+
+            Container(
+              height: 240,
+              margin: EdgeInsets.only(top: 10, left: 8),
+              child: FutureBuilder<List<Restaurants>>(
+                future: restaurantList,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    List<Restaurants>? data = snapshot.data;
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: data!.length,
+                      itemBuilder: (BuildContext context, index) {
+                        // print(data[index].title);
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          TablePage(data[index].id)),
+                                );
+                              },
+                              child: Container(
+                                height: 200,
+                                width: 130,
+                                margin: EdgeInsets.only(right: 15),
+                                child: Text(
+                                  data[index].name,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.clip,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 140,
+                              child: Text(
+                                data[index].location,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.clip,
+                              ),
+                            )
+                          ],
+                        );
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    print(snapshot.error);
+                  }
+
+                  // By default, show a loading spinner.
+                  return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 6,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 50, vertical: 80),
+                              height: 200,
+                              child: CircularProgressIndicator(),
+                              width: 130,
+                              margin: EdgeInsets.only(right: 15),
+                              decoration: BoxDecoration(
+                                color: Colors.black45,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                          ],
+                        );
+                      });
+                },
+              ),
+            ),
           ],
         ),
       ),

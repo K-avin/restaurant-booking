@@ -10,10 +10,12 @@ class Restaurants {
     required this.name,
     required this.location,
   });
-}
 
-var restaurantsAll = [
-  Restaurants(id: 1, name: "The French Laundry", location: "London"),
-  Restaurants(id: 1, name: "The French Laundry", location: "London"),
-  Restaurants(id: 1, name: "The French Laundry", location: "London"),
-];
+  factory Restaurants.fromJson(Map<String, dynamic> json) {
+    return Restaurants(
+      id: json['id'],
+      name: json['name'],
+      location: json['location'],
+    );
+  }
+}

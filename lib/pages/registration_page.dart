@@ -1,3 +1,5 @@
+import 'package:book_tablez/API/registerApi.dart';
+import 'package:book_tablez/Model/userModel.dart';
 import 'package:book_tablez/pages/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
   bool checkedValue = false;
   bool checkboxValue = false;
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Future<User>? _future;
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +97,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         ),
                         Container(
                           child: TextFormField(
+                            controller: _nameController,
                             decoration: ThemeHelper().textInputDecoration(
                                 'Username', 'Enter your user name'),
                           ),
@@ -99,6 +108,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         ),
                         Container(
                           child: TextFormField(
+                            controller: _emailController,
                             decoration: ThemeHelper().textInputDecoration(
                                 "E-mail address", "Enter your email"),
                             keyboardType: TextInputType.emailAddress,
@@ -116,6 +126,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
+                            controller: _passwordController,
                             obscureText: true,
                             decoration: ThemeHelper().textInputDecoration(
                                 "Password*", "Enter your password"),
@@ -205,12 +216,20 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               ),
                             ),
                             onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (context) => ProfilePage()),
-                                    (Route<dynamic> route) => false);
-                              }
+                              setState(() {
+                                _future = registerApi(
+                                    _nameController.text,
+                                    _emailController.text,
+                                    _passwordController.text,
+                                    context);
+                              });
+
+                              // if (_formKey.currentState!.validate()) {
+                              //   Navigator.of(context).pushAndRemoveUntil(
+                              //       MaterialPageRoute(
+                              //           builder: (context) => ProfilePage()),
+                              //       (Route<dynamic> route) => false);
+                              // }
                             },
                           ),
                         ),

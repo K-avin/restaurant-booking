@@ -1,3 +1,4 @@
+import 'package:book_tablez/API/getCategory.dart';
 import 'package:book_tablez/Model/categoryModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,10 @@ import 'home_page.dart';
 
 class DishesCategoryPage extends StatefulWidget {
   // Category category;
+  int restaurantId;
+  int tableId;
+
+  DishesCategoryPage(this.restaurantId, this.tableId);
 
   // DishesCategoryPage(this.category);
   @override
@@ -22,6 +27,15 @@ class DishesCategoryPage extends StatefulWidget {
 class _DishesCategoryPageState extends State<DishesCategoryPage> {
   double _drawerIconSize = 24;
   double _drawerFontSize = 17;
+
+  late Future<List<Category>> categoryList;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    categoryList = getCategory();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -179,207 +193,313 @@ class _DishesCategoryPageState extends State<DishesCategoryPage> {
                   SizedBox(
                     height: 18,
                   ),
+                  // Container(
+                  //   padding: EdgeInsets.all(10),
+                  //   child: Column(
+                  //     children: <Widget>[
+                  //       Container(
+                  //         decoration: BoxDecoration(
+                  //           // color: Colors.white,
+                  //           borderRadius: BorderRadius.circular(12),
+                  //           boxShadow: [
+                  //             BoxShadow(
+                  //               color: Colors.black12,
+                  //               blurRadius: 30,
+                  //               offset: const Offset(0, 0),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         child: Container(
+                  //           child: Row(
+                  //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //             children: [
+                  //               Column(
+                  //                 children: [
+                  //                   Container(
+                  //                     child: Card(
+                  //                       elevation: 0,
+                  //                       shape: RoundedRectangleBorder(
+                  //                         borderRadius:
+                  //                             BorderRadius.circular(12),
+                  //                       ),
+                  //                       child: InkWell(
+                  //                         child: Container(
+                  //                           decoration: BoxDecoration(
+                  //                             borderRadius:
+                  //                                 BorderRadius.circular(12),
+                  //                             image: DecorationImage(
+                  //                               image: AssetImage(
+                  //                                   "assets/images/category.png"),
+                  //                               // fit: BoxFit.fitWidth,
+                  //                               alignment: Alignment.topCenter,
+                  //                             ),
+                  //                           ),
+                  //                           alignment: Alignment.center,
+                  //                           width: 120,
+                  //                           height: 120,
+                  //                           padding: const EdgeInsets.only(
+                  //                               top: 4, right: 6, left: 6),
+                  //                           child: Column(
+                  //                             children: <Widget>[
+                  //                               Container(
+                  //                                 margin: const EdgeInsets.only(
+                  //                                     top: 83),
+                  //                                 child: Text(
+                  //                                   'Biriyani',
+                  //                                   style: TextStyle(
+                  //                                     color: Colors.black54,
+                  //                                     fontWeight:
+                  //                                         FontWeight.w400,
+                  //                                     fontSize: 16,
+                  //                                   ),
+                  //                                   textAlign: TextAlign.center,
+                  //                                 ),
+                  //                               ),
+                  //                             ],
+                  //                           ),
+                  //                         ),
+                  //                         onTap: () {
+                  //                           Navigator.push(
+                  //                               context,
+                  //                               MaterialPageRoute(
+                  //                                   builder: (context) =>
+                  //                                       DishesPage()));
+                  //                         },
+                  //                       ),
+                  //                     ),
+                  //                   ),
+                  //                 ],
+                  //               ),
+                  //               Column(
+                  //                 children: [
+                  //                   Container(
+                  //                     child: Card(
+                  //                       elevation: 0,
+                  //                       shape: RoundedRectangleBorder(
+                  //                         borderRadius:
+                  //                             BorderRadius.circular(12),
+                  //                       ),
+                  //                       child: InkWell(
+                  //                         child: Container(
+                  //                           decoration: BoxDecoration(
+                  //                             borderRadius:
+                  //                                 BorderRadius.circular(12),
+                  //                             image: DecorationImage(
+                  //                               image: AssetImage(
+                  //                                   "assets/images/category.png"),
+                  //                               // fit: BoxFit.fitWidth,
+                  //                               alignment: Alignment.topCenter,
+                  //                             ),
+                  //                           ),
+                  //                           alignment: Alignment.center,
+                  //                           width: 120,
+                  //                           height: 120,
+                  //                           padding: const EdgeInsets.only(
+                  //                               top: 4, right: 6, left: 6),
+                  //                           child: Column(
+                  //                             children: <Widget>[
+                  //                               Container(
+                  //                                 margin: const EdgeInsets.only(
+                  //                                     top: 83),
+                  //                                 child: Text(
+                  //                                   'Biriyani',
+                  //                                   style: TextStyle(
+                  //                                     color: Colors.black54,
+                  //                                     fontWeight:
+                  //                                         FontWeight.w400,
+                  //                                     fontSize: 16,
+                  //                                   ),
+                  //                                   textAlign: TextAlign.center,
+                  //                                 ),
+                  //                               ),
+                  //                             ],
+                  //                           ),
+                  //                         ),
+                  //                         onTap: () {
+                  //                           Navigator.push(
+                  //                               context,
+                  //                               MaterialPageRoute(
+                  //                                   builder: (context) =>
+                  //                                       DishesPage()));
+                  //                         },
+                  //                       ),
+                  //                     ),
+                  //                   ),
+                  //                 ],
+                  //               ),
+                  //               Column(
+                  //                 children: [
+                  //                   Container(
+                  //                     child: Card(
+                  //                       elevation: 0,
+                  //                       shape: RoundedRectangleBorder(
+                  //                         borderRadius:
+                  //                             BorderRadius.circular(12),
+                  //                       ),
+                  //                       child: InkWell(
+                  //                         child: Container(
+                  //                           decoration: BoxDecoration(
+                  //                             borderRadius:
+                  //                                 BorderRadius.circular(12),
+                  //                             image: DecorationImage(
+                  //                               image: AssetImage(
+                  //                                   "assets/images/category.png"),
+                  //                               // fit: BoxFit.fitWidth,
+                  //                               alignment: Alignment.topCenter,
+                  //                             ),
+                  //                           ),
+                  //                           alignment: Alignment.center,
+                  //                           width: 120,
+                  //                           height: 120,
+                  //                           padding: const EdgeInsets.only(
+                  //                               top: 4, right: 6, left: 6),
+                  //                           child: Column(
+                  //                             children: <Widget>[
+                  //                               Container(
+                  //                                 margin: const EdgeInsets.only(
+                  //                                     top: 83),
+                  //                                 child: Text(
+                  //                                   'Biriyani',
+                  //                                   style: TextStyle(
+                  //                                     color: Colors.black54,
+                  //                                     fontWeight:
+                  //                                         FontWeight.w400,
+                  //                                     fontSize: 16,
+                  //                                   ),
+                  //                                   textAlign: TextAlign.center,
+                  //                                 ),
+                  //                               ),
+                  //                             ],
+                  //                           ),
+                  //                         ),
+                  //                         onTap: () {
+                  //                           Navigator.push(
+                  //                               context,
+                  //                               MaterialPageRoute(
+                  //                                   builder: (context) =>
+                  //                                       DishesPage()));
+                  //                         },
+                  //                       ),
+                  //                     ),
+                  //                   ),
+                  //                 ],
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // )
                   Container(
-                    padding: EdgeInsets.all(10),
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                            // color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 30,
-                                offset: const Offset(0, 0),
-                              ),
-                            ],
-                          ),
-                          child: Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                      child: Card(
-                                        elevation: 0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                    child:
+                        Text('Restaurant ID' + widget.restaurantId.toString()),
+                  ),
+                  Container(
+                    child: Text('Table ID' + widget.tableId.toString()),
+                  ),
+                  Container(
+                    height: 240,
+                    margin: EdgeInsets.only(top: 10, left: 8),
+                    child: FutureBuilder<List<Category>>(
+                      future: categoryList,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          List<Category>? data = snapshot.data;
+                          return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: data!.length,
+                            itemBuilder: (BuildContext context, index) {
+                              // print(data[index].title);
+                              return Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => DishesPage(
+                                                widget.restaurantId,
+                                                widget.tableId,
+                                                data[index].id)),
+                                      );
+                                    },
+                                    child: Container(
+                                      height: 200,
+                                      width: 130,
+                                      margin: EdgeInsets.only(right: 15),
+                                      child: Text(
+                                        data[index].title,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 17,
                                         ),
-                                        child: InkWell(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    "assets/images/category.png"),
-                                                // fit: BoxFit.fitWidth,
-                                                alignment: Alignment.topCenter,
-                                              ),
-                                            ),
-                                            alignment: Alignment.center,
-                                            width: 120,
-                                            height: 120,
-                                            padding: const EdgeInsets.only(
-                                                top: 4, right: 6, left: 6),
-                                            child: Column(
-                                              children: <Widget>[
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 83),
-                                                  child: Text(
-                                                    'Biriyani',
-                                                    style: TextStyle(
-                                                      color: Colors.black54,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 16,
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        DishesPage()));
-                                          },
-                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.clip,
                                       ),
                                     ),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    Container(
-                                      child: Card(
-                                        elevation: 0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                        ),
-                                        child: InkWell(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    "assets/images/category.png"),
-                                                // fit: BoxFit.fitWidth,
-                                                alignment: Alignment.topCenter,
-                                              ),
-                                            ),
-                                            alignment: Alignment.center,
-                                            width: 120,
-                                            height: 120,
-                                            padding: const EdgeInsets.only(
-                                                top: 4, right: 6, left: 6),
-                                            child: Column(
-                                              children: <Widget>[
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 83),
-                                                  child: Text(
-                                                    'Biriyani',
-                                                    style: TextStyle(
-                                                      color: Colors.black54,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 16,
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        DishesPage()));
-                                          },
-                                        ),
-                                      ),
+                                  ),
+                                  // Container(
+                                  //   width: 140,
+                                  //   child: Text(
+                                  //     data[index].chairs.toString(),
+                                  //     style: TextStyle(
+                                  //       color: Colors.black,
+                                  //       fontSize: 17,
+                                  //     ),
+                                  //     maxLines: 1,
+                                  //     overflow: TextOverflow.clip,
+                                  //   ),
+                                  // )
+                                ],
+                              );
+                            },
+                          );
+                        } else if (snapshot.hasError) {
+                          print(snapshot.error);
+                        }
+
+                        // By default, show a loading spinner.
+                        return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 6,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 50, vertical: 80),
+                                    height: 200,
+                                    child: CircularProgressIndicator(),
+                                    width: 130,
+                                    margin: EdgeInsets.only(right: 15),
+                                    decoration: BoxDecoration(
+                                      color: Colors.black45,
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    Container(
-                                      child: Card(
-                                        elevation: 0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                        ),
-                                        child: InkWell(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    "assets/images/category.png"),
-                                                // fit: BoxFit.fitWidth,
-                                                alignment: Alignment.topCenter,
-                                              ),
-                                            ),
-                                            alignment: Alignment.center,
-                                            width: 120,
-                                            height: 120,
-                                            padding: const EdgeInsets.only(
-                                                top: 4, right: 6, left: 6),
-                                            child: Column(
-                                              children: <Widget>[
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 83),
-                                                  child: Text(
-                                                    'Biriyani',
-                                                    style: TextStyle(
-                                                      color: Colors.black54,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 16,
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        DishesPage()));
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                                  ),
+                                ],
+                              );
+                            });
+                      },
                     ),
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
+
+            //........................................................................................................
+//.........................................................................................................
+//........................................................................................................
+//.........................................................................................................
+//........................................................................................................
+//.........................................................................................................
           ],
         ),
       ),
