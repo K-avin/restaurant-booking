@@ -241,292 +241,363 @@ class _RestaurantPageState extends State<RestaurantPage> {
               height: 100,
               child: HeaderWidget(100, false, Icons.house_rounded),
             ),
-            Container(
-              alignment: Alignment.center,
-              // margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 90),
-                  ),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                            // color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 30,
-                                offset: const Offset(0, 0),
-                              ),
-                            ],
-                          ),
-                          child: Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                      child: Card(
-                                        elevation: 0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                        ),
-                                        child: InkWell(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    "assets/images/resurant.png"),
-                                                // fit: BoxFit.fitWidth,
-                                                alignment:
-                                                    Alignment.bottomCenter,
-                                              ),
-                                            ),
-                                            alignment: Alignment.center,
-                                            width: 150,
-                                            height: 150,
-                                            padding: EdgeInsets.all(15),
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  alignment: Alignment.topLeft,
-                                                  // padding: const EdgeInsets.only(
-                                                  //     top: 26,
-                                                  //     left: 158,
-                                                  //     bottom: 4.0),
-                                                  child: Text(
-                                                    "Rosaro",
-                                                    style: TextStyle(
-                                                      color: Colors.black87,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 19,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  alignment: Alignment.topLeft,
-                                                  // padding: const EdgeInsets.only(
-                                                  //     left: 158),
-                                                  child: Text(
-                                                    "Vavuniya",
-                                                    style: TextStyle(
-                                                      color: Colors.black87,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 13,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          onTap: () {
-                                            // Navigator.push(
-                                            //     context,
-                                            //     MaterialPageRoute(
-                                            //         builder: (context) =>
-                                            //             TablePage()));
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                    //
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    Container(
-                                      child: Card(
-                                        elevation: 0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                        ),
-                                        child: InkWell(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    "assets/images/resurant.png"),
-                                                // fit: BoxFit.fitWidth,
-                                                alignment:
-                                                    Alignment.bottomCenter,
-                                              ),
-                                            ),
-                                            alignment: Alignment.center,
-                                            width: 150,
-                                            height: 150,
-                                            padding: EdgeInsets.all(15),
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  alignment: Alignment.topLeft,
-                                                  // padding: const EdgeInsets.only(
-                                                  //     top: 26,
-                                                  //     left: 158,
-                                                  //     bottom: 4.0),
-                                                  child: Text(
-                                                    "Rosaro",
-                                                    style: TextStyle(
-                                                      color: Colors.black87,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 19,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  alignment: Alignment.topLeft,
-                                                  // padding: const EdgeInsets.only(
-                                                  //     left: 158),
-                                                  child: Text(
-                                                    "Vavuniya",
-                                                    style: TextStyle(
-                                                      color: Colors.black87,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 13,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          onTap: () {
-                                            // Navigator.push(
-                                            //     context,
-                                            //     MaterialPageRoute(
-                                            //         builder: (context) =>
-                                            //             TablePage()));
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                    //
-                                  ],
-                                ),
-                              ],
-                            ),
+            GridView.count(
+              shrinkWrap: true,
+              // Create a grid with 2 columns. If you change the scrollDirection to
+              // horizontal, this produces 2 rows.
+              crossAxisCount: 2,
+              // Generate 100 widgets that display their index in the List.
+              children: List.generate(6, (index) {
+                return Center(
+                  child: Card(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: InkWell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/resurant.png"),
+                            // fit: BoxFit.fitWidth,
+                            alignment: Alignment.bottomCenter,
                           ),
                         ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-
-//........................................................................................................
-//.........................................................................................................
-//........................................................................................................
-//.........................................................................................................
-//........................................................................................................
-//.........................................................................................................
-
-            Container(
-              height: 240,
-              margin: EdgeInsets.only(top: 10, left: 8),
-              child: FutureBuilder<List<Restaurants>>(
-                future: restaurantList,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    List<Restaurants>? data = snapshot.data;
-                    return ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: data!.length,
-                      itemBuilder: (BuildContext context, index) {
-                        // print(data[index].title);
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        alignment: Alignment.center,
+                        width: 180,
+                        height: 180,
+                        padding: EdgeInsets.all(15),
+                        child: Column(
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          TablePage(data[index].id)),
-                                );
-                              },
-                              child: Container(
-                                height: 200,
-                                width: 130,
-                                margin: EdgeInsets.only(right: 15),
-                                child: Text(
-                                  data[index].name,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 17,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.clip,
-                                ),
-                              ),
-                            ),
                             Container(
-                              width: 140,
+                              alignment: Alignment.topLeft,
+                              // padding: const EdgeInsets.only(
+                              //     top: 26,
+                              //     left: 158,
+                              //     bottom: 4.0),
                               child: Text(
-                                data[index].location,
+                                "Rosaro",
                                 style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 17,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 19,
                                 ),
-                                maxLines: 1,
-                                overflow: TextOverflow.clip,
                               ),
-                            )
-                          ],
-                        );
-                      },
-                    );
-                  } else if (snapshot.hasError) {
-                    print(snapshot.error);
-                  }
-
-                  // By default, show a loading spinner.
-                  return ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 6,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                            ),
                             Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 50, vertical: 80),
-                              height: 200,
-                              child: CircularProgressIndicator(),
-                              width: 130,
-                              margin: EdgeInsets.only(right: 15),
-                              decoration: BoxDecoration(
-                                color: Colors.black45,
-                                borderRadius: BorderRadius.circular(12),
+                              alignment: Alignment.topLeft,
+                              // padding: const EdgeInsets.only(
+                              //     left: 158),
+                              child: Text(
+                                "Vavuniya",
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 13,
+                                ),
                               ),
                             ),
                           ],
-                        );
-                      });
-                },
-              ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TablePage(0)));
+                      },
+                    ),
+                  ),
+                );
+              }),
             ),
+            // Container(
+            //   alignment: Alignment.center,
+            //   // margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+            //   padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            //   child: Column(
+            //     children: [
+            //       Container(
+            //         padding: EdgeInsets.fromLTRB(0, 0, 0, 90),
+            //       ),
+            //       SizedBox(
+            //         height: 18,
+            //       ),
+            //       Container(
+            //         padding: EdgeInsets.all(10),
+            //         child: Column(
+            //           children: <Widget>[
+            //             Container(
+            //               decoration: BoxDecoration(
+            //                 // color: Colors.white,
+            //                 borderRadius: BorderRadius.circular(12),
+            //                 boxShadow: [
+            //                   BoxShadow(
+            //                     color: Colors.black12,
+            //                     blurRadius: 30,
+            //                     offset: const Offset(0, 0),
+            //                   ),
+            //                 ],
+            //               ),
+            //               child: Container(
+            //                 child: Row(
+            //                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //                   children: [
+            //                     Column(
+            //                       children: [
+            //                         Container(
+            //                           child: Card(
+            //                             elevation: 0,
+            //                             shape: RoundedRectangleBorder(
+            //                               borderRadius:
+            //                                   BorderRadius.circular(12),
+            //                             ),
+            //                             child: InkWell(
+            //                               child: Container(
+            //                                 decoration: BoxDecoration(
+            //                                   borderRadius:
+            //                                       BorderRadius.circular(12),
+            //                                   image: DecorationImage(
+            //                                     image: AssetImage(
+            //                                         "assets/images/resurant.png"),
+            //                                     // fit: BoxFit.fitWidth,
+            //                                     alignment:
+            //                                         Alignment.bottomCenter,
+            //                                   ),
+            //                                 ),
+            //                                 alignment: Alignment.center,
+            //                                 width: 150,
+            //                                 height: 150,
+            //                                 padding: EdgeInsets.all(15),
+            //                                 child: Column(
+            //                                   children: [
+            //                                     Container(
+            //                                       alignment: Alignment.topLeft,
+            //                                       // padding: const EdgeInsets.only(
+            //                                       //     top: 26,
+            //                                       //     left: 158,
+            //                                       //     bottom: 4.0),
+            //                                       child: Text(
+            //                                         "Rosaro",
+            //                                         style: TextStyle(
+            //                                           color: Colors.black87,
+            //                                           fontWeight:
+            //                                               FontWeight.w500,
+            //                                           fontSize: 19,
+            //                                         ),
+            //                                       ),
+            //                                     ),
+            //                                     Container(
+            //                                       alignment: Alignment.topLeft,
+            //                                       // padding: const EdgeInsets.only(
+            //                                       //     left: 158),
+            //                                       child: Text(
+            //                                         "Vavuniya",
+            //                                         style: TextStyle(
+            //                                           color: Colors.black87,
+            //                                           fontWeight:
+            //                                               FontWeight.w400,
+            //                                           fontSize: 13,
+            //                                         ),
+            //                                       ),
+            //                                     ),
+            //                                   ],
+            //                                 ),
+            //                               ),
+            //                               onTap: () {
+            //                                 // Navigator.push(
+            //                                 //     context,
+            //                                 //     MaterialPageRoute(
+            //                                 //         builder: (context) =>
+            //                                 //             TablePage()));
+            //                               },
+            //                             ),
+            //                           ),
+            //                         ),
+            //                         //
+            //                       ],
+            //                     ),
+            //                     Column(
+            //                       children: [
+            //                         Container(
+            //                           child: Card(
+            //                             elevation: 0,
+            //                             shape: RoundedRectangleBorder(
+            //                               borderRadius:
+            //                                   BorderRadius.circular(12),
+            //                             ),
+            //                             child: InkWell(
+            //                               child: Container(
+            //                                 decoration: BoxDecoration(
+            //                                   borderRadius:
+            //                                       BorderRadius.circular(12),
+            //                                   image: DecorationImage(
+            //                                     image: AssetImage(
+            //                                         "assets/images/resurant.png"),
+            //                                     // fit: BoxFit.fitWidth,
+            //                                     alignment:
+            //                                         Alignment.bottomCenter,
+            //                                   ),
+            //                                 ),
+            //                                 alignment: Alignment.center,
+            //                                 width: 150,
+            //                                 height: 150,
+            //                                 padding: EdgeInsets.all(15),
+            //                                 child: Column(
+            //                                   children: [
+            //                                     Container(
+            //                                       alignment: Alignment.topLeft,
+            //                                       // padding: const EdgeInsets.only(
+            //                                       //     top: 26,
+            //                                       //     left: 158,
+            //                                       //     bottom: 4.0),
+            //                                       child: Text(
+            //                                         "Rosaro",
+            //                                         style: TextStyle(
+            //                                           color: Colors.black87,
+            //                                           fontWeight:
+            //                                               FontWeight.w500,
+            //                                           fontSize: 19,
+            //                                         ),
+            //                                       ),
+            //                                     ),
+            //                                     Container(
+            //                                       alignment: Alignment.topLeft,
+            //                                       // padding: const EdgeInsets.only(
+            //                                       //     left: 158),
+            //                                       child: Text(
+            //                                         "Vavuniya",
+            //                                         style: TextStyle(
+            //                                           color: Colors.black87,
+            //                                           fontWeight:
+            //                                               FontWeight.w400,
+            //                                           fontSize: 13,
+            //                                         ),
+            //                                       ),
+            //                                     ),
+            //                                   ],
+            //                                 ),
+            //                               ),
+            //                               onTap: () {
+            //                                 // Navigator.push(
+            //                                 //     context,
+            //                                 //     MaterialPageRoute(
+            //                                 //         builder: (context) =>
+            //                                 //             TablePage()));
+            //                               },
+            //                             ),
+            //                           ),
+            //                         ),
+            //                         //
+            //                       ],
+            //                     ),
+            //                   ],
+            //                 ),
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            // ),
+
+//........................................................................................................
+//.........................................................................................................
+//........................................................................................................
+//.........................................................................................................
+//........................................................................................................
+//.........................................................................................................
+
+            // Container(
+            //   height: 240,
+            //   margin: EdgeInsets.only(top: 10, left: 8),
+            //   child: FutureBuilder<List<Restaurants>>(
+            //     future: restaurantList,
+            //     builder: (context, snapshot) {
+            //       if (snapshot.hasData) {
+            //         List<Restaurants>? data = snapshot.data;
+            //         return ListView.builder(
+            //           scrollDirection: Axis.horizontal,
+            //           itemCount: data!.length,
+            //           itemBuilder: (BuildContext context, index) {
+            //             // print(data[index].title);
+            //             return Column(
+            //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 GestureDetector(
+            //                   onTap: () {
+            //                     Navigator.push(
+            //                       context,
+            //                       MaterialPageRoute(
+            //                           builder: (context) =>
+            //                               TablePage(data[index].id)),
+            //                     );
+            //                   },
+            //                   child: Container(
+            //                     height: 150,
+            //                     width: 150,
+            //                     margin: EdgeInsets.only(right: 15),
+            //                     child: Text(
+            //                       data[index].name,
+            //                       style: TextStyle(
+            //                         color: Colors.black,
+            //                         fontSize: 17,
+            //                       ),
+            //                       maxLines: 1,
+            //                       overflow: TextOverflow.clip,
+            //                     ),
+            //                   ),
+            //                 ),
+            //                 Container(
+            //                   width: 40,
+            //                   child: Text(
+            //                     data[index].location,
+            //                     style: TextStyle(
+            //                       color: Colors.black,
+            //                       fontSize: 17,
+            //                     ),
+            //                     maxLines: 1,
+            //                     overflow: TextOverflow.clip,
+            //                   ),
+            //                 )
+            //               ],
+            //             );
+            //           },
+            //         );
+            //       } else if (snapshot.hasError) {
+            //         print(snapshot.error);
+            //       }
+
+            //       // By default, show a loading spinner.
+            //       return ListView.builder(
+            //           scrollDirection: Axis.horizontal,
+            //           itemCount: 2,
+            //           itemBuilder: (context, index) {
+            //             return Column(
+            //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 Container(
+            //                   padding: EdgeInsets.symmetric(
+            //                       horizontal: 50, vertical: 80),
+            //                   height: 150,
+            //                   child: CircularProgressIndicator(),
+            //                   width: 150,
+            //                   margin: EdgeInsets.only(right: 15),
+            //                   decoration: BoxDecoration(
+            //                     color: Colors.black45,
+            //                     borderRadius: BorderRadius.circular(12),
+            //                   ),
+            //                 ),
+            //               ],
+            //             );
+            //           });
+            //     },
+            //   ),
+            // ),
           ],
         ),
       ),

@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                                     padding:
                                         EdgeInsets.fromLTRB(40, 10, 40, 10),
                                     child: Text(
-                                      'Sign In gg gh'.toUpperCase(),
+                                      'Sign In'.toUpperCase(),
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
@@ -126,11 +126,11 @@ class _LoginPageState extends State<LoginPage> {
                                     });
 
                                     if (_future != null) {
-                                      // Navigator.pushReplacement(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) =>
-                                      //             HomePage()));
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  HomePage()));
                                     }
                                     //After successful login we will redirect to profile page. Let's create profile page now
                                   },

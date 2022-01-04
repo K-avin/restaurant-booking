@@ -320,7 +320,9 @@ class _DishesPageState extends State<DishesPage> {
                               child: Column(
                                 children: <Widget>[
                                   ListTile(
-                                      title: Text("Briyani"),
+                                      title: Text(
+                                        "Briyani",
+                                      ),
                                       subtitle: Text("Rs.135.00"),
                                       leading: CircleAvatar(
                                           backgroundImage: AssetImage(

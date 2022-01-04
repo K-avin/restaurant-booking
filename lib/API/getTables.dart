@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:book_tablez/Model/restaurantModel.dart';
 import 'package:book_tablez/Model/tablesModel.dart';
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
 import '../Constant/constants.dart';
 
